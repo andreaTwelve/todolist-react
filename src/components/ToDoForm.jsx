@@ -1,8 +1,9 @@
 import React, {Component} from "react";
+import axios from "axios"
 
 class ToDoForm extends Component{
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             text: ''
         }
@@ -10,7 +11,15 @@ class ToDoForm extends Component{
 
     onsubmit = (event) => {
         event.preventDefault();
-        this.props.addToDo(this.state.text)
+        axios.post("https://5e9ec500fb467500166c4658.mockapi.io/todos", this.state.text)
+            .then(res => {
+                this.props.addToDo(this.state.text);
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     };
 
     inputText = (event) => {

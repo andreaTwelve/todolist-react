@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios"
 class ToDo extends Component {
 
     constructor(props) {
@@ -21,7 +22,23 @@ class ToDo extends Component {
 
     deleteToDo = (event) => {
         console.log(event.target.id);
-        this.props.deleteItem(event.target.id)
+        axios.delete("https://5e9ec500fb467500166c4658.mockapi.io/todos", {
+            data: {
+                id: event.target.id
+            }
+        })
+            .then(
+                res => {
+                    this.props.deleteItem(event.target.id);
+                    console.log(res.data)
+                }
+            )
+            .catch(
+                err => {
+                    console.log(err)
+                }
+            )
+
     };
 
     render() {

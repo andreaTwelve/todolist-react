@@ -11,7 +11,6 @@ class ToDoList extends Component {
     }
   }
     deleteItem = (index) => {
-        console.log(this.props);
       this.props.deleteTodo(index)
     };
   componentDidMount() {
