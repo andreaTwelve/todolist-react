@@ -12,6 +12,15 @@ function A() {
   )
 }
 
+function B() {
+  return (
+    <div>
+      <a href="/">back</a>
+      <ToDoListContainer/>
+    </div>
+  )
+}
+
 export default function R() {
   return (
       <Router>
@@ -20,7 +29,7 @@ export default function R() {
         </ul>
         <Route>
           <Switch>
-            <Route path="/b" component={ToDoListContainer}/>
+            <Route path="/b" component={B}/>
             <Route path="/" component={A}/>
           </Switch>
         </Route>
