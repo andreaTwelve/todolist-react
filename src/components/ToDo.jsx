@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ReactDom from 'react-dom'
 class ToDo extends Component {
 
     constructor(props) {
@@ -9,26 +8,27 @@ class ToDo extends Component {
         }
     }
 
-    isClick = () => {
-        let todo = document.getElementById("todo");
+    isClick = (event) => {
         this.setState({
             done: !this.state.done
         });
-        if (this.state.done){
-            ReactDom.findDOMNode(todo).style.textDecoration = "line-through"
-            // console.log(this.state.todo.current)
-            // this.state.todo.current.style.textDecoration = "line-through"
+        if (this.state.done) {
+            event.target.style.textDecoration = "line-through"
         } else {
-            ReactDom.findDOMNode(todo).style.textDecoration = "none"
-            // this.state.todo.current.style.textDecoration = "none"
+            event.target.style.textDecoration = "none"
         }
-        console.log(this.state.done)
+    };
+
+    deleteToDo = (event) => {
+        console.log(event.target.id);
+        this.props.deleteItem(event.target.id)
     };
 
     render() {
         return (
             <div>
-                <input id="todo" value={this.props.todo} onClick={this.isClick} readOnly/>
+                <input id={this.props.index} onClick = {this.isClick} value = {this.props.todo} readOnly/>
+                <input type = "button" value = "X" onClick={this.deleteToDo}/>
             </div>
         )
     }
