@@ -4,9 +4,10 @@ import Router from "./routers/router"
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
         <Router/>
-      </header>
+      {/*<header className="App-header">*/}
+      {/*  */}
+      {/*</header>*/}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import ToDo from "../components/ToDo";
+import Index from "../Todo";
 import axios from "axios";
+import 'antd/dist/antd.css';
+import {Card} from "antd";
 
-class ToDoList extends Component {
+class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,15 +15,20 @@ class ToDoList extends Component {
     deleteItem = (index) => {
       this.props.deleteTodo(index)
     };
+
+    getDoneTodo = (id) => {
+        this.props.getDoneTodo(id);
+    };
   componentDidMount() {
     const _this = this;
     axios.get("https://5e9ec500fb467500166c4658.mockapi.io/todos")
         .then(
-            response => {
+            res => {
+                console.log(res.data);
               _this.setState({
-                todoList: response.data,
                 isLoaded: true
-              })
+              });
+                this.props.getTodo(res.data)
             }
         )
         .catch(
@@ -41,13 +48,15 @@ class ToDoList extends Component {
     } else {
       return (
           <div>
-            {this.props.todoList.map((todo, index) => (
-                <ToDo todo = {todo} key = {index} index = {index} deleteItem = {this.deleteItem}/>
-            ))}
+          <Card title="ToDoList">
+              {this.props.todoList.map((todo, index) => (
+                  <Index todo = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} getDoneTodo = {this.getDoneTodo}/>
+              ))}
+          </Card>
           </div>
       )
     }
     }
 }
 
-export default ToDoList
+export default TodoList

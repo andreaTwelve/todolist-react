@@ -1,41 +1,22 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
-import ToDoFormContainer from "../containers/ToDoFormContainer";
-import ToDoListContainer from "../containers/ToDoListContainer";
-
-function A() {
-  return (
-      <div>
-        <ToDoFormContainer/>
-        <ToDoListContainer/>
-      </div>
-  )
-}
-
-function B() {
-  return (
-    <div>
-      <a href="/">back</a>
-      <ToDoListContainer/>
-    </div>
-  )
-}
+import TodoFormContainer from "../containers/TodoFormContainer";
+import TodoListContainer from "../containers/TodoListContainer";
+import TodoDone from "../components/TodoDone";
 
 export default function R() {
   return (
       <Router>
         <ul>
-          <li><Link to="/b">ToDoListContainer</Link></li>
+          <li><Link to="/todoList">TodoList</Link></li>
+          <li><Link to="/doneTodoList">DoneTodoList</Link></li>
         </ul>
-        <Route>
+          <TodoFormContainer/>
           <Switch>
-            <Route path="/b" component={B}/>
-            <Route path="/" component={A}/>
+              <Route exact path="/" component={TodoListContainer}/>
+              <Route exact path="/todoList" component={TodoListContainer}/>
+              <Route exact path="/doneTodoList" component = {TodoDone}/>
           </Switch>
-        </Route>
-        <Route>
-
-        </Route>
       </Router>
   )
 }
