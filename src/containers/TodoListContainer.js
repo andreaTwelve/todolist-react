@@ -1,6 +1,6 @@
 import TodoList from "../components/TodoList";
 import {connect} from "react-redux";
-import {deleteTodo, getTodo, getDoneTodo} from "../actions";
+import {deleteTodo, getTodo, markDoneTodo} from "../actions";
 
 const mapStateToProps = (state) => (
     {
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = dispatch => ({
     deleteTodo: id => { dispatch(deleteTodo(id)) },
     getTodo: items => { dispatch(getTodo(items)) },
-    getDoneTodo: id => { dispatch(getDoneTodo(id)) }
+    markDoneTodo: data => { dispatch(markDoneTodo(data)) }
 });
 const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 export default TodoListContainer

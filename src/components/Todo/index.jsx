@@ -17,8 +17,10 @@ class Todo extends Component {
         axios.put(`https://5e9ec500fb467500166c4658.mockapi.io/todos/${this.props.id}`, {status: !this.props.status})
             .then(
                 res => {
-                    console.log(this.props.id);
-                    this.props.getDoneTodo(this.props.id)
+                    console.log("id", this.props.id);
+                    console.log("props.status", this.props.status);
+                    console.log("data.status", res.data.status);
+                    this.props.markDoneTodo(res.data);
                 }
             )
             .catch(
@@ -49,7 +51,7 @@ class Todo extends Component {
         return (
             <Divider>
                 <Space>
-                    <Input id={this.props.index} onClick={this.isClick} className = {`${this.props.todo.status} ? 'Done' : 'UnDone'`} value = {this.props.todo} readOnly/>
+                    <Input id={this.props.index} onClick={this.isClick} className = {`${this.props.status ? 'Done' : 'UnDone'}`} value = {this.props.todo} readOnly/>
                     <Button icon={<DeleteOutlined />} onClick={this.deleteToDo}/>
                 </Space>
             </Divider>

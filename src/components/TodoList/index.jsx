@@ -16,15 +16,15 @@ class TodoList extends Component {
       this.props.deleteTodo(index)
     };
 
-    getDoneTodo = (id) => {
-        this.props.getDoneTodo(id);
+    markDoneTodo = (data) => {
+        this.props.markDoneTodo(data);
     };
   componentDidMount() {
     const _this = this;
     axios.get("https://5e9ec500fb467500166c4658.mockapi.io/todos")
         .then(
             res => {
-                console.log(res.data);
+                //console.log(res.data);
               _this.setState({
                 isLoaded: true
               });
@@ -50,7 +50,7 @@ class TodoList extends Component {
           <div>
           <Card title="ToDoList">
               {this.props.todoList.map((todo, index) => (
-                  <Index todo = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} getDoneTodo = {this.getDoneTodo}/>
+                  <Index todo = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} markDoneTodo = {this.markDoneTodo} status = {todo.status}/>
               ))}
           </Card>
           </div>
