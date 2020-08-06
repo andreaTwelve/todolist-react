@@ -14,13 +14,19 @@ class Todo extends Component {
     }
 
     isClick = () => {
-        axios.put(`https://5e9ec500fb467500166c4658.mockapi.io/todos/${this.props.id}`, {status: !this.props.status})
+        axios.put(`http://localhost:8080/todos/${this.props.id}`,
+            {
+              id: this.props.id,
+              content: this.props.content,
+              status: true
+            })
             .then(
                 res => {
-                    console.log("id", this.props.id);
-                    console.log("props.status", this.props.status);
-                    console.log("data.status", res.data.status);
-                    this.props.markDoneTodo(res.data);
+                  // console.log("id", this.props.id);
+                  // console.log("content", this.props.content);
+                  console.log("!status", !this.props.status);
+                  console.log(res.data);
+                  //this.props.markDoneTodo(res.data);
                 }
             )
             .catch(
@@ -32,7 +38,7 @@ class Todo extends Component {
 
     deleteToDo = (event) => {
         console.log(this.props.id);
-        axios.delete(`https://5e9ec500fb467500166c4658.mockapi.io/todos/${this.props.id}`)
+        axios.delete(`http://localhost:8080/todos/${this.props.id}`)
             .then(
                 res => {
                     this.props.deleteItem(this.props.id);
@@ -51,7 +57,7 @@ class Todo extends Component {
         return (
             <Divider>
                 <Space>
-                    <Input id={this.props.index} onClick={this.isClick} className = {`${this.props.status ? 'Done' : 'UnDone'}`} value = {this.props.todo} readOnly/>
+                    <Input id={this.props.index} onClick={this.isClick} className = {`${this.props.status ? 'Done' : 'UnDone'}`} value = {this.props.content} readOnly/>
                     <Button icon={<DeleteOutlined />} onClick={this.deleteToDo}/>
                 </Space>
             </Divider>

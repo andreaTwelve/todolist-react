@@ -13,7 +13,7 @@ class TodoForm extends Component{
 
     onsubmit = (event) => {
         event.preventDefault();
-        axios.post("https://5e9ec500fb467500166c4658.mockapi.io/todos", {content: this.state.content})
+        axios.post("http://localhost:8080/todos", {content: this.state.content})
             .then(res => {
                 console.log(res.data);
                 this.props.addToDo(res.data);
@@ -29,7 +29,7 @@ class TodoForm extends Component{
         this.setState( {
             content: content
         })
-    }
+    };
 
     render() {
         return (

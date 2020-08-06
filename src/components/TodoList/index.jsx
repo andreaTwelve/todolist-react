@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Index from "../Todo";
+import Todo from "../Todo";
 import axios from "axios";
 import 'antd/dist/antd.css';
 import {Card} from "antd";
@@ -21,7 +21,7 @@ class TodoList extends Component {
     };
   componentDidMount() {
     const _this = this;
-    axios.get("https://5e9ec500fb467500166c4658.mockapi.io/todos")
+    axios.get("http://localhost:8080/todos")
         .then(
             res => {
                 //console.log(res.data);
@@ -50,7 +50,7 @@ class TodoList extends Component {
           <div>
           <Card title="ToDoList">
               {this.props.todoList.map((todo, index) => (
-                  <Index todo = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} markDoneTodo = {this.markDoneTodo} status = {todo.status}/>
+                  <Todo todo = {todo} content = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} markDoneTodo = {this.markDoneTodo} status = {todo.status}/>
               ))}
           </Card>
           </div>
