@@ -19,13 +19,11 @@ class TodoList extends Component {
     markDoneTodo = (data) => {
         this.props.markDoneTodo(data);
     };
-  componentDidMount() {
-    const _this = this;
-    axios.get("http://localhost:8080/todos")
+  componentDidMount = () => {
+    axios.get("http://localhost:9090/todos")
         .then(
             res => {
-                //console.log(res.data);
-              _this.setState({
+              this.setState({
                 isLoaded: true
               });
                 this.props.getTodo(res.data)
@@ -34,7 +32,7 @@ class TodoList extends Component {
         .catch(
             error => {
               console.log(error);
-              _this.setState({
+              this.setState({
                 isLoaded: false,
                 error: error
               })

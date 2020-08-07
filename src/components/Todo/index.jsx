@@ -14,19 +14,15 @@ class Todo extends Component {
     }
 
     isClick = () => {
-        axios.put(`http://localhost:8080/todos/${this.props.id}`,
+        axios.put(`http://localhost:9090/todos/${this.props.id}`,
             {
               id: this.props.id,
               content: this.props.content,
-              status: true
+              status: !this.props.status
             })
             .then(
                 res => {
-                  // console.log("id", this.props.id);
-                  // console.log("content", this.props.content);
-                  console.log("!status", !this.props.status);
-                  console.log(res.data);
-                  //this.props.markDoneTodo(res.data);
+                  this.props.markDoneTodo(res.data);
                 }
             )
             .catch(
@@ -38,11 +34,10 @@ class Todo extends Component {
 
     deleteToDo = (event) => {
         console.log(this.props.id);
-        axios.delete(`http://localhost:8080/todos/${this.props.id}`)
+        axios.delete(`http://localhost:9090/todos/${this.props.id}`)
             .then(
                 res => {
                     this.props.deleteItem(this.props.id);
-                    console.log(res.data)
                 }
             )
             .catch(

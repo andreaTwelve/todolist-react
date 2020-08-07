@@ -13,9 +13,8 @@ class TodoForm extends Component{
 
     onsubmit = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:8080/todos", {content: this.state.content})
+        axios.post("http://localhost:9090/todos", {content: this.state.content})
             .then(res => {
-                console.log(res.data);
                 this.props.addToDo(res.data);
             })
             .catch(err => {

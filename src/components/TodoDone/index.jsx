@@ -17,22 +17,17 @@ class TodoDone extends Component{
   markDoneTodo = (data) => {
     this.props.markDoneTodo(data);
   };
-
-  componentDidMount = () => {
-    console.log(this.props.doneTodoList);
-    };
-
-    render() {
-        return (
-            <div>
+  render() {
+      return (
+          <div>
               <Card title="DoneToDoList">
                 {this.props.doneTodoList.map((todo, index) => (
                     <Todo todo = {todo} content = {todo.content} key = {index} id = {todo.id} deleteItem = {this.deleteItem} markDoneTodo = {this.markDoneTodo} status = {todo.status}/>
                 ))}
               </Card>
-            </div>
-        )
-    }
+          </div>
+      )
+  }
 }
 
 export default TodoDone
